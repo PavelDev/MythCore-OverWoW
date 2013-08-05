@@ -1,0 +1,40 @@
+ALTER TABLE `character_inventory`
+ADD UNIQUE KEY (`guid`,`bag`,`slot`);
+
+ALTER TABLE `guild`
+ROW_FORMAT=DEFAULT,
+CHANGE `guildid` `guildid` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `name` `name` VARCHAR(24) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' NOT NULL,
+CHANGE `leaderguid` `leaderguid` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `EmblemStyle` `EmblemStyle` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `EmblemColor` `EmblemColor` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `BorderStyle` `BorderStyle` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `BorderColor` `BorderColor` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `BackgroundColor` `BackgroundColor` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `motd` `motd` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' NOT NULL,
+CHANGE `createdate` `createdate` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `BankMoney` `BankMoney` BIGINT(20) UNSIGNED DEFAULT '0' NOT NULL;
+
+ALTER TABLE `gm_tickets`
+ROW_FORMAT=DEFAULT,
+CHANGE `guid` `guid` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CHANGE `playerGuid` `playerGuid` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `name` `name` VARCHAR(12) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+CHANGE `createtime` `createtime` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `map` `map` SMALLINT(5) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `timestamp` `timestamp` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `closed` `closed` INT(11) DEFAULT '0' NOT NULL,
+CHANGE `assignedto` `assignedto` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `completed` `completed` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `escalated` `escalated` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `viewed` `viewed` TINYINT(3) UNSIGNED DEFAULT '0' NOT NULL;
+
+ALTER TABLE `guild_rank`
+ROW_FORMAT=DEFAULT,
+CHANGE `guildid` `guildid` INT(10) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `rid` `rid` TINYINT(3) UNSIGNED NOT NULL,
+CHANGE `rname` `rname` VARCHAR(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '' NOT NULL,
+CHANGE `rights` `rights` MEDIUMINT(8) UNSIGNED DEFAULT '0' NOT NULL,
+CHANGE `BankMoneyPerDay` `BankMoneyPerDay` INT(10) UNSIGNED DEFAULT '0' NOT NULL;
+
+ALTER TABLE `instance` ADD COLUMN `completedEncounters` int(10) unsigned NOT NULL DEFAULT '0' AFTER `difficulty`;
